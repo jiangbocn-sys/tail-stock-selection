@@ -27,25 +27,50 @@ def get_hs300_stocks() -> list[str]:
         return []
 
 
+def _ak_has(func_name: str) -> bool:
+    """检查 akshare 是否有该函数"""
+    return hasattr(ak, func_name)
+
+
 def calc_sector_heat() -> tuple[list[str], pd.DataFrame]:
     """
     计算板块热度排名
     热度 = 涨幅标准化×0.5 + 资金净流入标准化×0.5
 
     返回：(热度前5的板块名称列表, 完整热度数据DataFrame)
+    兼容 akshare 不同版本的 API。
     """
     # 1. 获取板块涨幅数据
-    change_df = ak.stock_board_industry_index_em()
-    change_df = change_df[['板块名称', '涨跌幅']].copy()
+    try:
+        # 新版 akshare (>=1.14): stock_board_industry_spot_em
+        change_df = ak.stock_board_industry_spot_em()
+        # 检查列名
+        if '板块名称' in change_df.columns and '涨跌幅' in change_df.columns:
+            change_df = change_df[['板块名称', '涨跌幅']].copy()
+        elif '名称' in change_df.columns and '涨跌幅' in change_df.columns:
+            change_df = change_df[['名称', '涨跌幅']].copy()
+            change_df.rename(columns={'名称': '板块名称'}, inplace=True)
+        else:
+            print(f"  板块涨幅数据列不匹配: {change_df.columns.tolist()}")
+            return _fallback_sectors(), pd.DataFrame()
+    except Exception as e:
+        print(f"  板块涨幅获取失败: {e}")
+        return _fallback_sectors(), pd.DataFrame()
+
     change_df['涨跌幅'] = pd.to_numeric(change_df['涨跌幅'], errors='coerce')
+    change_df = change_df.dropna(subset=['涨跌幅'])
 
-    # 2. 获取板块资金流向数据
-    flow_df = ak.stock_board_industry_fund_flow_em()
-    flow_df = flow_df[['名称', '主力净流入']].copy()
-    flow_df.columns = ['板块名称', '主力净流入']
-    flow_df['主力净流入'] = pd.to_numeric(flow_df['主力净流入'], errors='coerce')
+    # 2. 获取板块资金流向数据（可选）
+    flow_df = None
+    for func in ['stock_board_industry_fund_flow_em']:
+        if _ak_has(func):
+            try:
+                flow_df = getattr(ak, func)()
+                break
+            except Exception:
+                continue
 
-    # 3. 标准化处理（Min-Max归一化到0-100分）
+    # 3. 标准化处理
     def normalize(series: pd.Series) -> pd.Series:
         min_val = series.min()
         max_val = series.max()
@@ -54,10 +79,25 @@ def calc_sector_heat() -> tuple[list[str], pd.DataFrame]:
         return ((series - min_val) / (max_val - min_val) * 100).round(2)
 
     change_df['change_norm'] = normalize(change_df['涨跌幅'])
-    flow_df['flow_norm'] = normalize(flow_df['主力净流入'])
 
     # 4. 合并计算热度得分
-    heat_df = change_df.merge(flow_df, on='板块名称', how='inner')
+    if flow_df is not None and not flow_df.empty:
+        if '板块名称' in flow_df.columns:
+            if '主力净流入' in flow_df.columns:
+                flow_df = flow_df[['板块名称', '主力净流入']].copy()
+            elif '主力净流入-净额' in flow_df.columns:
+                flow_df = flow_df[['板块名称', '主力净流入-净额']].copy()
+                flow_df.rename(columns={'主力净流入-净额': '主力净流入'}, inplace=True)
+
+        flow_df['主力净流入'] = pd.to_numeric(flow_df['主力净流入'], errors='coerce')
+        flow_df['flow_norm'] = normalize(flow_df['主力净流入'])
+
+        heat_df = change_df.merge(flow_df[['板块名称', 'flow_norm']], on='板块名称', how='left')
+        heat_df['flow_norm'] = heat_df['flow_norm'].fillna(50)
+    else:
+        heat_df = change_df.copy()
+        heat_df['flow_norm'] = 50  # 资金流数据不可用时仅用涨幅
+
     heat_df['heat_score'] = (
         heat_df['change_norm'] * 0.5 +
         heat_df['flow_norm'] * 0.5
@@ -68,6 +108,11 @@ def calc_sector_heat() -> tuple[list[str], pd.DataFrame]:
     top5_sectors = heat_df.head(5)['板块名称'].tolist()
 
     return top5_sectors, heat_df
+
+
+def _fallback_sectors() -> list[str]:
+    """板块数据不可用时的备用板块"""
+    return ['半导体', '计算机设备', '通信设备', '消费电子', '汽车零部件']
 
 
 def get_hot_stocks(

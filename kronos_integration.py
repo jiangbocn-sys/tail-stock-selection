@@ -15,9 +15,11 @@ import pandas as pd
 from datetime import datetime, timedelta
 from typing import Optional
 
-# Kronos 系统路径
-KRONOS_PATH = "/Users/bobo/.openclaw/workspace/Kronos"
-OUTPUT_DIR = "/Users/bobo/.openclaw/workspace/stock_data"
+# Kronos 系统路径（自动检测环境）
+import platform
+_is_macos = platform.system() == "Darwin"
+KRONOS_PATH = "/Users/bobo/.openclaw/workspace/Kronos" if _is_macos else os.path.expanduser("~/workspace/Kronos")
+OUTPUT_DIR = "/Users/bobo/.openclaw/workspace/stock_data" if _is_macos else os.path.expanduser("~/workspace/stock_data")
 sys.path.insert(0, KRONOS_PATH)
 
 # 模型路径

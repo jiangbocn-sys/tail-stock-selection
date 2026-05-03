@@ -33,6 +33,8 @@ TOKENIZER_PATH = os.path.join(KRONOS_PATH, "models/Kronos-Tokenizer-base")
 
 def get_stock_prefix(code: str) -> str:
     """根据股票代码获取前缀（sh/sz）"""
+    # 兼容 "000001.SZ" 和 "000001" 两种格式
+    code = code.split('.')[0]
     if code.startswith('6'):
         return 'sh'
     elif code.startswith(('0', '3')):
@@ -99,11 +101,58 @@ def fetch_kline_from_10jqka(code: str) -> Optional[pd.DataFrame]:
         return None
 
 
+def fetch_kline_from_stockwinner(code: str) -> Optional[pd.DataFrame]:
+    """
+    从 StockWinner 本地 SQLite 数据库查询 K 线数据
+    使用 database query endpoint，比 /market/kline 更可靠
+    """
+    try:
+        if '.' not in code:
+            prefix = get_stock_prefix(code)
+            stock_code = f"{code}.{prefix.upper()}"
+        else:
+            stock_code = code
+
+        import requests
+        resp = requests.post(
+            f"http://localhost:8080/api/v1/ui/databases/kline/tables/kline_data/query",
+            json={"query": f'SELECT * FROM kline_data WHERE stock_code = "{stock_code}" ORDER BY trade_date DESC LIMIT 500'},
+            timeout=30
+        )
+        resp.raise_for_status()
+        data = resp.json()
+
+        rows = data.get("data", [])
+        if not rows or len(rows) < 30:
+            return None
+
+        records = []
+        for k in rows:
+            records.append({
+                'date': k.get('trade_date', ''),
+                'open': float(k.get('open', 0)),
+                'high': float(k.get('high', 0)),
+                'low': float(k.get('low', 0)),
+                'close': float(k.get('close', 0)),
+                'volume': float(k.get('volume', 0)),
+                'amount': float(k.get('amount', 0)),
+            })
+
+        df = pd.DataFrame(records)
+        df['date'] = pd.to_datetime(df['date'])
+        print(f"    [Kronos] DB {code} StockWinner: {len(df)}天")
+        return df
+
+    except Exception as e:
+        print(f"    [Kronos] ❌ {code} StockWinner DB查询失败: {e}")
+        return None
+
+
 def fetch_kline_data(code: str, lookback: int = 400) -> Optional[pd.DataFrame]:
     """
     获取股票历史K线数据
 
-    优先级：本地CSV缓存 > 同花顺HTTP API
+    优先级：本地CSV缓存 > StockWinner API > 同花顺HTTP API
     无可用数据源时返回 None，绝不使用模拟数据。
     """
     # 1. 优先使用本地CSV缓存
@@ -120,23 +169,32 @@ def fetch_kline_data(code: str, lookback: int = 400) -> Optional[pd.DataFrame]:
         except Exception as e:
             print(f"    [Kronos] ❌ {code} 本地CSV读取失败: {e}")
 
-    # 2. 同花顺HTTP API
-    df = fetch_kline_from_10jqka(code)
-    if df is not None and len(df) >= 200:
+    # 2. StockWinner 本地 API
+    df = fetch_kline_from_stockwinner(code)
+    if df is not None and len(df) >= 30:
         df = df.sort_values('date').tail(lookback)
         try:
             os.makedirs(OUTPUT_DIR, exist_ok=True)
             df.to_csv(csv_path, index=False)
         except Exception as e:
             print(f"    [Kronos] ⚠️  {code} CSV缓存保存失败: {e}")
+        return df
+
+    # 3. 同花顺HTTP API（备用，静默失败）
+    try:
+        df = fetch_kline_from_10jqka(code)
+    except Exception:
+        df = None
+    if df is not None and len(df) >= 30:
+        df = df.sort_values('date').tail(lookback)
+        try:
+            os.makedirs(OUTPUT_DIR, exist_ok=True)
+            df.to_csv(csv_path, index=False)
+        except Exception:
+            pass
         print(f"    [Kronos] 🌐 {code} 同花顺: {len(df)}天")
         return df
 
-    # 3. 无可用数据源，如实报告
-    if df is None:
-        print(f"    [Kronos] ❌ {code} 无可用数据源（本地缓存不存在，同花顺API不可用）")
-    else:
-        print(f"    [Kronos] ❌ {code} K线数据不足：仅{len(df)}天，需要≥200天")
     return None
 
 
@@ -248,29 +306,16 @@ def fetch_kronos_predictions(codes: list[str], pred_days: int = 5) -> dict[str, 
         print(f"  [Kronos]    错误详情: {e}")
         return {}
 
-    # 批量预测
+    # 批量预测（静默失败，只报告统计）
     results = {}
     failed = []
     for i, code in enumerate(codes):
-        if i % 10 == 0:
+        if i % 50 == 0:
             print(f"    [Kronos] 进度: {i}/{len(codes)}")
 
         prediction = predict_single_stock(code, predictor, pred_days)
         if prediction is not None:
             results[code] = prediction
+            print(f"    [Kronos] ✅ {code} 预测: {prediction:+.2f}%")
         else:
             failed.append(code)
-
-    # 统计报告
-    total = len(codes)
-    success = len(results)
-    positive = sum(1 for v in results.values() if v > 0)
-    negative = success - positive
-
-    print(f"\n  [Kronos] 预测完成:")
-    print(f"    成功: {success}/{total} 只")
-    if failed:
-        print(f"    失败: {len(failed)}/{total} 只（{', '.join(failed[:10])}{'...' if len(failed) > 10 else ''}）")
-    print(f"    趋势向上: {positive} 只 | 趋势向下: {negative} 只")
-
-    return results

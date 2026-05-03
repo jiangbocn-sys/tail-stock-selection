@@ -155,12 +155,15 @@ def get_tail_score(res):
 
 
 # ─── 数据获取 ─────────────────────────────────────────────
-def api_get(url, timeout=30, retries=3):
-    """HTTP GET 请求 StockWinner API，带重试"""
+def api_get(url, timeout=30, retries=3, method='GET', body=None):
+    """HTTP 请求 StockWinner API，带重试"""
     full_url = f'{API_BASE}{url}'
     for attempt in range(retries):
         try:
-            req = urllib.request.Request(full_url)
+            req = urllib.request.Request(full_url, method=method)
+            if body is not None:
+                req.add_header('Content-Type', 'application/json')
+                req.data = json.dumps(body).encode('utf-8')
             with urllib.request.urlopen(req, timeout=timeout) as resp:
                 raw = resp.read().decode('utf-8')
                 if not raw:
@@ -178,11 +181,20 @@ def api_get(url, timeout=30, retries=3):
 
 
 def get_trading_dates(start_str, end_str):
-    """从 SQLite 获取交易日列表"""
-    url = f"/api/v1/ui/databases/kline/tables/kline_data/data?limit=1000&order=ASC&order_by=id"
-    data = api_get(url)
-    rows = data.get('data', {}).get('data', [])
-    dates = sorted(set(r['trade_date'] for r in rows if r.get('trade_date') and r['trade_date'] >= start_str and r['trade_date'] <= end_str))
+    """从 SQLite 获取交易日列表 - 通过查询某只股票的历史数据"""
+    # 用一只数据完整的股票来获取交易日
+    url = (f"/api/v1/ui/databases/kline/tables/kline_data/data?"
+           f"stock_code=000001.SZ&limit=500&order=DESC&order_by=id")
+    data = api_get(url, timeout=15)
+    raw = data.get('data', {})
+    if isinstance(raw, list):
+        rows = raw
+    else:
+        rows = raw.get('data', [])
+    dates = sorted(set(
+        r['trade_date'] for r in rows
+        if r.get('trade_date') and r['trade_date'] >= start_str and r['trade_date'] <= end_str
+    ))
     return dates
 
 
@@ -281,11 +293,15 @@ def analyze_stock(stock_code, daily_df, minute_bars, target_bar=210):
     if daily_df is not None and len(daily_df) >= 30:
         try:
             df_hist = daily_df.tail(100)[['open', 'high', 'low', 'close', 'volume', 'amount']].copy()
-            df_hist['timestamps'] = pd.to_datetime(df_hist.index)
 
-            future_dates = pd.bdate_range(start=df_hist.index[-1] + 1, periods=5)
+            # 使用真实的 trade_date 列作为时间戳 (关键修复)
+            trade_dates_str = daily_df.tail(100)['trade_date'].tolist()
+            x_ts = pd.Series(pd.to_datetime(trade_dates_str), dtype='datetime64[ns]')
+
+            # 未来5个交易日 (从最后一个真实交易日往后)
+            last_real_date = pd.Timestamp(trade_dates_str[-1])
+            future_dates = pd.bdate_range(start=last_real_date + pd.Timedelta(days=1), periods=5)
             y_ts = pd.Series(pd.to_datetime(future_dates))
-            x_ts = pd.Series(pd.to_datetime(df_hist.index), dtype='datetime64[ns]')
 
             pred_df = predictor.predict(
                 df=df_hist.reset_index(drop=True),
@@ -298,6 +314,8 @@ def analyze_stock(stock_code, daily_df, minute_bars, target_bar=210):
                 last_close = float(daily_df['close'].iloc[-1])
                 avg_pred = pred_df['close'].mean()
                 kronos_pred = (avg_pred - last_close) / last_close * 100
+            else:
+                kronos_pred = None
         except Exception as e:
             kronos_pred = None
 

@@ -26,11 +26,20 @@ predictor = KronosPredictor(model, tokenizer, max_context=512)
 print('Kronos 加载完成')
 
 # ─── 配置 ──────────────────────────────────────────────────
+# ─── 策略参数 ────────────────────────────────────────────────
+TAKE_PROFIT_PCT = 2.0       # 止盈阈值 (%)
+STOP_LOSS_PCT = -2.0        # 止损阈值 (%)
+MIN_COMPOSITE = 15.0        # 最低综合分门槛
+HOLD_DAYS = 2               # 持仓天数 (T+N)
+KRONOS_WEIGHT = 1.0         # Kronos 权重 (composite = tail_score × 0.6 + kronos_pred × KRONOS_WEIGHT)
+TAIL_SCORE_WEIGHT = 0.6     # tail_score 权重
+
 API_BASE = 'http://localhost:8080'
 ACCOUNT_ID = '8229DE7E'
 INITIAL_CAPITAL = 100000.0
 
 WATCHLIST = [
+    # 沪深300核心
     '600519.SH','601318.SH','600036.SH','601398.SH','600900.SH',
     '601012.SH','300750.SZ','300274.SZ','600089.SH','601166.SH',
     '600887.SH','603259.SH','300760.SZ','002475.SZ','300059.SZ',
@@ -39,12 +48,29 @@ WATCHLIST = [
     '601186.SH','600048.SH','600837.SH','601601.SH','601336.SH',
     '002415.SZ','002027.SZ','600009.SH','600104.SH','601766.SH',
     '601989.SH',
+    # 半导体
     '002371.SZ','688981.SH','603986.SH','688008.SH','002049.SZ',
     '603501.SH','688012.SH','002185.SZ','600584.SH',
+    # AI算力
     '300496.SZ','002230.SZ','300024.SZ','688521.SH',
     '688256.SH','688787.SH','603019.SH','300308.SZ','002402.SZ',
+    # 商业航天
     '688297.SH','600893.SH','002025.SZ','600118.SH','300159.SZ',
     '603256.SH','600150.SH','002389.SZ','688148.SH','002265.SZ',
+    # 医药 (新增)
+    '300015.SZ','600196.SH','000661.SZ','002007.SZ','300142.SZ',
+    '600211.SH','300347.SZ','002422.SZ',
+    # 新能源/光伏 (新增)
+    '002129.SZ','601012.SH','600438.SH','002202.SZ','300014.SZ',
+    '603659.SH','688005.SH',
+    # 消费/白酒 (新增)
+    '000858.SZ','000568.SZ','600809.SH','002304.SZ','000596.SZ',
+    '600519.SH','603288.SH',
+    # 军工 (新增)
+    '000768.SZ','601989.SH','002013.SZ','600862.SH','002238.SZ',
+    '300115.SZ',
+    # 金融科技 (新增)
+    '002230.SZ','300033.SZ','600570.SH','002152.SZ','300253.SZ',
 ]
 
 NAME_MAP = {
@@ -70,6 +96,22 @@ NAME_MAP = {
     '600118.SH':'中国卫星','300159.SZ':'新余国科','603256.SH':'宏图航天',
     '600150.SH':'中国船舶','002389.SZ':'航天彩虹','688148.SH':'航天宏图',
     '002265.SZ':'西仪股份',
+    # 医药
+    '300015.SZ':'爱尔眼科','600196.SH':'复星医药','000661.SZ':'长春高新',
+    '002007.SZ':'华兰生物','300142.SZ':'沃森生物','600211.SH':'西藏药业',
+    '300347.SZ':'泰格医药','002422.SZ':'科伦药业',
+    # 新能源
+    '002129.SZ':'TCL中环','600438.SH':'通威股份','002202.SZ':'金风科技',
+    '300014.SZ':'亿纬锂能','603659.SH':'璞泰来','688005.SH':'容百科技',
+    # 消费
+    '000858.SZ':'五粮液','000568.SZ':'泸州老窖','600809.SH':'山西汾酒',
+    '002304.SZ':'洋河股份','000596.SZ':'古井贡酒','603288.SH':'海天味业',
+    # 军工
+    '000768.SZ':'中航西飞','002013.SZ':'中航机电','600862.SH':'中航高科',
+    '002238.SZ':'天融信','300115.SZ':'长盈精密',
+    # 金融科技
+    '300033.SZ':'同花顺','600570.SH':'恒生电子','002152.SZ':'广电运通',
+    '300253.SZ':'卫宁健康',
 }
 
 
@@ -370,9 +412,13 @@ def score_and_filter(res):
     kronos_pred = res.get('kronos_pred')
 
     if kronos_pred is not None:
-        composite = tail_score * 0.5 + kronos_pred * 2
+        composite = tail_score * TAIL_SCORE_WEIGHT + kronos_pred * KRONOS_WEIGHT
     else:
-        composite = tail_score * 0.5
+        composite = tail_score * TAIL_SCORE_WEIGHT
+
+    # 最低综合分门槛
+    if composite < MIN_COMPOSITE:
+        return None
 
     return composite, reasons, tail_score, kronos_pred
 
@@ -422,12 +468,18 @@ def run_backtest(trading_dates):
         print(f'交易日 [{day_idx+1}/{len(trading_dates)}]: {trade_date}')
         print(f'{"="*60}')
 
-        # ── 1. 卖出逻辑: 检查昨日买入的持仓 ──
+        # ── 1. 卖出逻辑 ──
         sells_today = []
         positions_to_remove = []
 
         for pos_idx, pos in enumerate(state.positions):
-            print(f'  检查卖出: {pos.stock_code} (买入日={pos.buy_date})')
+            # 计算持仓天数，不足 HOLD_DAYS 天不检查卖出
+            buy_date_idx = trading_dates.index(pos.buy_date)
+            hold_days = day_idx - buy_date_idx
+            if hold_days < HOLD_DAYS:
+                continue
+
+            print(f'  检查卖出: {pos.stock_code} (买入日={pos.buy_date}, 持仓={hold_days}天)')
             minute_bars = fetch_minute_data(pos.stock_code, trade_date)
             daily_api_calls += 1
             time.sleep(0.3)  # 避免过快请求
@@ -445,14 +497,14 @@ def run_backtest(trading_dates):
                 positions_to_remove.append(pos_idx)
                 continue
 
-            # 检查 0~30 号 bar (9:30-10:00)
+            # 检查 0~30 号 bar (9:30-10:00) - 止盈 + 止损
             sold = False
             for bar_idx in range(min(31, len(minute_bars))):
                 current_price = minute_bars[bar_idx]['close']
                 profit_pct = (current_price - pos.buy_price) / pos.buy_price * 100
 
-                if profit_pct >= 3.0:
-                    # 盈利 >= 3%，立即卖出
+                if profit_pct >= TAKE_PROFIT_PCT:
+                    # 盈利 >= 止盈阈值，止盈卖出
                     sell_price = current_price
                     sell_amount = pos.shares * sell_price
                     pnl = (sell_price - pos.buy_price) * pos.shares
@@ -460,11 +512,27 @@ def run_backtest(trading_dates):
                         date=trade_date, action='SELL', stock_code=pos.stock_code,
                         shares=pos.shares, price=sell_price,
                         amount=sell_amount, pnl=pnl,
-                        reason=f'盈利+{profit_pct:.1f}%止盈(bar[{bar_idx}])'
+                        reason=f'止盈+{profit_pct:.1f}%(bar[{bar_idx}])'
                     ))
                     positions_to_remove.append(pos_idx)
                     sold = True
-                    print(f'    止盈卖出 bar[{bar_idx}]: {profit_pct:+.1f}% @ {sell_price:.2f}')
+                    print(f'    止盈 bar[{bar_idx}]: {profit_pct:+.1f}% @ {sell_price:.2f}')
+                    break
+
+                if profit_pct <= STOP_LOSS_PCT:
+                    # 亏损 <= 止损阈值，止损卖出
+                    sell_price = current_price
+                    sell_amount = pos.shares * sell_price
+                    pnl = (sell_price - pos.buy_price) * pos.shares
+                    sells_today.append(TradeLog(
+                        date=trade_date, action='SELL', stock_code=pos.stock_code,
+                        shares=pos.shares, price=sell_price,
+                        amount=sell_amount, pnl=pnl,
+                        reason=f'止损{profit_pct:+.1f}%(bar[{bar_idx}])'
+                    ))
+                    positions_to_remove.append(pos_idx)
+                    sold = True
+                    print(f'    止损 bar[{bar_idx}]: {profit_pct:+.1f}% @ {sell_price:.2f}')
                     break
 
             if not sold:
@@ -478,7 +546,7 @@ def run_backtest(trading_dates):
                     date=trade_date, action='SELL', stock_code=pos.stock_code,
                     shares=pos.shares, price=sell_price,
                     amount=sell_amount, pnl=pnl,
-                    reason='10:00无条件平仓'
+                    reason='10:00平仓'
                 ))
                 positions_to_remove.append(pos_idx)
                 profit_pct = (sell_price - pos.buy_price) / pos.buy_price * 100
@@ -626,6 +694,7 @@ def generate_report(state, trading_dates):
     print(f'{"="*70}')
     print(f'回测区间: {trading_dates[0]} ~ {trading_dates[-1]}')
     print(f'初始资金: {INITIAL_CAPITAL:,.0f}')
+    print(f'止盈: +{TAKE_PROFIT_PCT:.0f}% | 止损: {STOP_LOSS_PCT:+.0f}% | 最低分: {MIN_COMPOSITE:.0f} | 持仓: T+{HOLD_DAYS}')
     print(f'最终现金: {state.cash:,.0f}')
     print(f'收益率: {(state.cash - INITIAL_CAPITAL) / INITIAL_CAPITAL * 100:+.2f}%')
     print()
@@ -725,10 +794,12 @@ def generate_report(state, trading_dates):
 
 # ─── 主入口 ───────────────────────────────────────────────
 if __name__ == '__main__':
-    print('尾盘选股策略回测')
+    print('尾盘选股策略回测 (优化版)')
     print(f'回测区间: 2026-04-01 ~ 2026-04-30')
     print(f'初始资金: {INITIAL_CAPITAL:,.0f}')
     print(f'Watchlist: {len(WATCHLIST)} 只股票')
+    print(f'止盈: +{TAKE_PROFIT_PCT:.0f}% | 止损: {STOP_LOSS_PCT:+.0f}% | 最低分: {MIN_COMPOSITE:.0f}')
+    print(f'持仓: T+{HOLD_DAYS} | tail_score权重: {TAIL_SCORE_WEIGHT} | Kronos权重: {KRONOS_WEIGHT}')
 
     # 获取交易日
     print('\n获取交易日列表...')
@@ -738,6 +809,17 @@ if __name__ == '__main__':
     if not trading_dates:
         print('错误: 未找到交易日数据')
         sys.exit(1)
+
+    # 去重 watchlist
+    seen = set()
+    unique_watchlist = []
+    for c in WATCHLIST:
+        if c not in seen:
+            seen.add(c)
+            unique_watchlist.append(c)
+    # 覆盖全局变量
+    globals()['WATCHLIST'] = unique_watchlist
+    print(f'股票池: {len(WATCHLIST)} 只 (已去重)')
 
     # 运行回测
     state = run_backtest(trading_dates)

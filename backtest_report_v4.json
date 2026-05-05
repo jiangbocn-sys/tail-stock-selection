@@ -1,0 +1,1286 @@
+{
+  "start_date": "2026-04-01",
+  "end_date": "2026-04-30",
+  "initial_capital": 100000.0,
+  "final_cash": 104159.0,
+  "return_pct": 4.159,
+  "total_trades": 114,
+  "buys": 57,
+  "sells": 57,
+  "wins": 21,
+  "losses": 36,
+  "win_rate": 36.84210526315789,
+  "total_pnl": 4158.999999999999,
+  "avg_win": 548.4285714285711,
+  "avg_loss": -204.3888888888887,
+  "trades": [
+    {
+      "date": "2026-04-01",
+      "action": "BUY",
+      "stock_code": "000596.SZ",
+      "shares": 300,
+      "price": 107.08,
+      "amount": 32124.0,
+      "pnl": 0.0,
+      "reason": "综合分45.0 | 涨幅+4.05%(+10) | RSI=40.8(+20) | BOLL=35.2%(+10) | 尾盘拉升(+15) | OBV上升(+10) | ADX=37.5(+10)"
+    },
+    {
+      "date": "2026-04-01",
+      "action": "BUY",
+      "stock_code": "002415.SZ",
+      "shares": 1000,
+      "price": 30.65,
+      "amount": 30650.0,
+      "pnl": 0.0,
+      "reason": "综合分42.0 | 涨幅+0.79%(+20) | RSI=45.3(+20) | BOLL=34.1%(+10) | OBV上升(+10) | ADX=49.3(+10)"
+    },
+    {
+      "date": "2026-04-02",
+      "action": "BUY",
+      "stock_code": "601857.SH",
+      "shares": 1000,
+      "price": 12.33,
+      "amount": 12330.0,
+      "pnl": 0.0,
+      "reason": "综合分51.0 | 涨幅+1.99%(+15) | RSI=55.6(+20) | BOLL=63.9%(+10) | MA金叉(+10) | 尾盘拉升(+15) | OBV上升(+10) | MACD多头(+5)"
+    },
+    {
+      "date": "2026-04-02",
+      "action": "BUY",
+      "stock_code": "002265.SZ",
+      "shares": 500,
+      "price": 23.33,
+      "amount": 11665.0,
+      "pnl": 0.0,
+      "reason": "综合分51.0 | 涨幅+1.04%(+20) | RSI=49.9(+20) | BOLL=62.3%(+10) | MA金叉(+10) | 尾盘拉升(+15) | ADX=30.6(+10)"
+    },
+    {
+      "date": "2026-04-02",
+      "action": "BUY",
+      "stock_code": "600893.SH",
+      "shares": 200,
+      "price": 49.93,
+      "amount": 9986.0,
+      "pnl": 0.0,
+      "reason": "综合分42.0 | 涨幅+1.73%(+15) | RSI=46.5(+20) | BOLL=36.3%(+10) | 尾盘拉升(+15) | OBV上升(+10)"
+    },
+    {
+      "date": "2026-04-03",
+      "action": "SELL",
+      "stock_code": "000596.SZ",
+      "shares": 300,
+      "price": 106.42,
+      "amount": 31926.0,
+      "pnl": -197.99999999999898,
+      "reason": "14:00平仓"
+    },
+    {
+      "date": "2026-04-03",
+      "action": "SELL",
+      "stock_code": "002415.SZ",
+      "shares": 1000,
+      "price": 30.44,
+      "amount": 30440.0,
+      "pnl": -209.9999999999973,
+      "reason": "14:00平仓"
+    },
+    {
+      "date": "2026-04-03",
+      "action": "BUY",
+      "stock_code": "002025.SZ",
+      "shares": 300,
+      "price": 61.34,
+      "amount": 18402.0,
+      "pnl": 0.0,
+      "reason": "综合分54.0 | 涨幅+1.06%(+20) | RSI=52.7(+20) | BOLL=53.4%(+10) | MA金叉(+10) | 尾盘拉升(+15) | OBV上升(+10) | MACD多头(+5)"
+    },
+    {
+      "date": "2026-04-07",
+      "action": "SELL",
+      "stock_code": "601857.SH",
+      "shares": 1000,
+      "price": 12.54,
+      "amount": 12540.0,
+      "pnl": 209.9999999999991,
+      "reason": "14:00平仓"
+    },
+    {
+      "date": "2026-04-07",
+      "action": "SELL",
+      "stock_code": "002265.SZ",
+      "shares": 500,
+      "price": 22.6,
+      "amount": 11300.0,
+      "pnl": -364.9999999999984,
+      "reason": "止损-3.1%(bar[0])"
+    },
+    {
+      "date": "2026-04-07",
+      "action": "SELL",
+      "stock_code": "600893.SH",
+      "shares": 200,
+      "price": 48.61,
+      "amount": 9722.0,
+      "pnl": -264.00000000000006,
+      "reason": "止损-2.6%(bar[1])"
+    },
+    {
+      "date": "2026-04-07",
+      "action": "BUY",
+      "stock_code": "603256.SH",
+      "shares": 300,
+      "price": 68.89,
+      "amount": 20667.0,
+      "pnl": 0.0,
+      "reason": "综合分48.0 | 涨幅+1.35%(+20) | RSI=52.2(+20) | BOLL=53.0%(+10) | MA金叉(+10) | 尾盘拉升(+15) | MACD多头(+5)"
+    },
+    {
+      "date": "2026-04-07",
+      "action": "BUY",
+      "stock_code": "600150.SH",
+      "shares": 800,
+      "price": 32.01,
+      "amount": 25608.0,
+      "pnl": 0.0,
+      "reason": "综合分45.0 | 涨幅+4.92%(+10) | RSI=42.5(+20) | BOLL=40.1%(+10) | 尾盘拉升(+15) | OBV上升(+10) | ADX=39.2(+10)"
+    },
+    {
+      "date": "2026-04-08",
+      "action": "SELL",
+      "stock_code": "002025.SZ",
+      "shares": 300,
+      "price": 70.7,
+      "amount": 21210.0,
+      "pnl": 2808.0,
+      "reason": "止盈+15.3%(bar[0])"
+    },
+    {
+      "date": "2026-04-08",
+      "action": "BUY",
+      "stock_code": "000661.SZ",
+      "shares": 200,
+      "price": 86.56,
+      "amount": 17312.0,
+      "pnl": 0.0,
+      "reason": "综合分48.0 | 涨幅+2.00%(+15) | RSI=45.5(+20) | BOLL=40.8%(+10) | 尾盘拉升(+15) | OBV上升(+10) | ADX=41.3(+10)"
+    },
+    {
+      "date": "2026-04-08",
+      "action": "BUY",
+      "stock_code": "601166.SH",
+      "shares": 900,
+      "price": 18.79,
+      "amount": 16911.0,
+      "pnl": 0.0,
+      "reason": "综合分45.0 | 涨幅+1.30%(+20) | RSI=50.0(+20) | BOLL=50.2%(+10) | 尾盘拉升(+15) | ADX=25.0(+10)"
+    },
+    {
+      "date": "2026-04-08",
+      "action": "BUY",
+      "stock_code": "002594.SZ",
+      "shares": 100,
+      "price": 100.79,
+      "amount": 10079.0,
+      "pnl": 0.0,
+      "reason": "综合分45.0 | 涨幅+2.87%(+15) | RSI=50.6(+20) | BOLL=33.0%(+10) | 尾盘拉升(+15) | OBV上升(+10) | MACD多头(+5)"
+    },
+    {
+      "date": "2026-04-09",
+      "action": "SELL",
+      "stock_code": "603256.SH",
+      "shares": 300,
+      "price": 72.46,
+      "amount": 21737.999999999996,
+      "pnl": 1070.999999999998,
+      "reason": "止盈+5.2%(bar[0])"
+    },
+    {
+      "date": "2026-04-09",
+      "action": "SELL",
+      "stock_code": "600150.SH",
+      "shares": 800,
+      "price": 32.19,
+      "amount": 25752.0,
+      "pnl": 143.99999999999977,
+      "reason": "14:00平仓"
+    },
+    {
+      "date": "2026-04-09",
+      "action": "BUY",
+      "stock_code": "601857.SH",
+      "shares": 1600,
+      "price": 12.09,
+      "amount": 19344.0,
+      "pnl": 0.0,
+      "reason": "综合分48.0 | 涨幅+1.00%(+20) | RSI=51.4(+20) | BOLL=44.8%(+10) | MA金叉(+10) | 尾盘拉升(+15) | MACD多头(+5)"
+    },
+    {
+      "date": "2026-04-09",
+      "action": "BUY",
+      "stock_code": "603659.SH",
+      "shares": 600,
+      "price": 31.9,
+      "amount": 19140.0,
+      "pnl": 0.0,
+      "reason": "综合分42.0 | 涨幅+1.30%(+20) | RSI=55.2(+20) | BOLL=55.5%(+10) | 尾盘拉升(+15) | MACD多头(+5)"
+    },
+    {
+      "date": "2026-04-09",
+      "action": "BUY",
+      "stock_code": "300014.SZ",
+      "shares": 300,
+      "price": 65.18,
+      "amount": 19554.000000000004,
+      "pnl": 0.0,
+      "reason": "综合分39.0 | 涨幅+1.48%(+20) | RSI=49.3(+20) | BOLL=37.3%(+10) | OBV上升(+10) | MACD多头(+5)"
+    },
+    {
+      "date": "2026-04-10",
+      "action": "SELL",
+      "stock_code": "000661.SZ",
+      "shares": 200,
+      "price": 86.26,
+      "amount": 17252.0,
+      "pnl": -59.99999999999943,
+      "reason": "14:00平仓"
+    },
+    {
+      "date": "2026-04-10",
+      "action": "SELL",
+      "stock_code": "601166.SH",
+      "shares": 900,
+      "price": 18.58,
+      "amount": 16722.0,
+      "pnl": -189.00000000000077,
+      "reason": "14:00平仓"
+    },
+    {
+      "date": "2026-04-10",
+      "action": "SELL",
+      "stock_code": "002594.SZ",
+      "shares": 100,
+      "price": 101.66,
+      "amount": 10166.0,
+      "pnl": 86.99999999999903,
+      "reason": "14:00平仓"
+    },
+    {
+      "date": "2026-04-10",
+      "action": "BUY",
+      "stock_code": "300015.SZ",
+      "shares": 1500,
+      "price": 9.63,
+      "amount": 14445.000000000002,
+      "pnl": 0.0,
+      "reason": "综合分51.0 | 涨幅+1.26%(+20) | RSI=42.8(+20) | BOLL=37.5%(+10) | 尾盘拉升(+15) | OBV上升(+10) | ADX=41.3(+10)"
+    },
+    {
+      "date": "2026-04-10",
+      "action": "BUY",
+      "stock_code": "000661.SZ",
+      "shares": 100,
+      "price": 86.09,
+      "amount": 8609.0,
+      "pnl": 0.0,
+      "reason": "综合分51.0 | 涨幅+1.12%(+20) | RSI=45.1(+20) | BOLL=40.1%(+10) | 尾盘拉升(+15) | OBV上升(+10) | ADX=27.3(+10)"
+    },
+    {
+      "date": "2026-04-10",
+      "action": "BUY",
+      "stock_code": "002007.SZ",
+      "shares": 1000,
+      "price": 14.94,
+      "amount": 14940.0,
+      "pnl": 0.0,
+      "reason": "综合分51.0 | 涨幅+1.50%(+20) | RSI=50.6(+20) | BOLL=61.2%(+10) | MA金叉(+10) | 尾盘拉升(+15) | ADX=30.8(+10)"
+    },
+    {
+      "date": "2026-04-13",
+      "action": "SELL",
+      "stock_code": "601857.SH",
+      "shares": 1600,
+      "price": 12.09,
+      "amount": 19344.0,
+      "pnl": 0.0,
+      "reason": "14:00平仓"
+    },
+    {
+      "date": "2026-04-13",
+      "action": "SELL",
+      "stock_code": "603659.SH",
+      "shares": 600,
+      "price": 33.64,
+      "amount": 20184.0,
+      "pnl": 1044.0000000000011,
+      "reason": "止盈+5.5%(bar[0])"
+    },
+    {
+      "date": "2026-04-13",
+      "action": "SELL",
+      "stock_code": "300014.SZ",
+      "shares": 300,
+      "price": 69.63,
+      "amount": 20889.0,
+      "pnl": 1334.9999999999966,
+      "reason": "止盈+6.8%(bar[0])"
+    },
+    {
+      "date": "2026-04-13",
+      "action": "BUY",
+      "stock_code": "002422.SZ",
+      "shares": 600,
+      "price": 34.73,
+      "amount": 20837.999999999996,
+      "pnl": 0.0,
+      "reason": "综合分51.0 | 涨幅+2.24%(+15) | RSI=55.9(+20) | BOLL=63.7%(+10) | MA金叉(+10) | 尾盘拉升(+15) | OBV上升(+10) | MACD多头(+5)"
+    },
+    {
+      "date": "2026-04-13",
+      "action": "BUY",
+      "stock_code": "002265.SZ",
+      "shares": 900,
+      "price": 22.87,
+      "amount": 20583.0,
+      "pnl": 0.0,
+      "reason": "综合分48.0 | 涨幅+1.69%(+15) | RSI=48.6(+20) | BOLL=54.8%(+10) | 尾盘拉升(+15) | OBV上升(+10) | ADX=40.1(+10)"
+    },
+    {
+      "date": "2026-04-13",
+      "action": "BUY",
+      "stock_code": "601012.SH",
+      "shares": 1200,
+      "price": 17.73,
+      "amount": 21276.0,
+      "pnl": 0.0,
+      "reason": "综合分45.0 | 涨幅+3.62%(+10) | RSI=48.2(+20) | BOLL=41.3%(+10) | 尾盘拉升(+15) | OBV上升(+10) | ADX=37.4(+10)"
+    },
+    {
+      "date": "2026-04-14",
+      "action": "SELL",
+      "stock_code": "300015.SZ",
+      "shares": 1500,
+      "price": 9.54,
+      "amount": 14309.999999999998,
+      "pnl": -135.00000000000244,
+      "reason": "14:00平仓"
+    },
+    {
+      "date": "2026-04-14",
+      "action": "SELL",
+      "stock_code": "000661.SZ",
+      "shares": 100,
+      "price": 85.25,
+      "amount": 8525.0,
+      "pnl": -84.00000000000034,
+      "reason": "14:00平仓"
+    },
+    {
+      "date": "2026-04-14",
+      "action": "SELL",
+      "stock_code": "002007.SZ",
+      "shares": 1000,
+      "price": 14.91,
+      "amount": 14910.0,
+      "pnl": -29.99999999999936,
+      "reason": "14:00平仓"
+    },
+    {
+      "date": "2026-04-14",
+      "action": "BUY",
+      "stock_code": "601668.SH",
+      "shares": 2800,
+      "price": 4.97,
+      "amount": 13916.0,
+      "pnl": 0.0,
+      "reason": "综合分51.0 | 涨幅+1.02%(+20) | RSI=47.4(+20) | BOLL=46.4%(+10) | 尾盘拉升(+15) | OBV上升(+10) | ADX=28.2(+10)"
+    },
+    {
+      "date": "2026-04-14",
+      "action": "BUY",
+      "stock_code": "600584.SH",
+      "shares": 300,
+      "price": 44.14,
+      "amount": 13242.0,
+      "pnl": 0.0,
+      "reason": "综合分48.0 | 涨幅+2.92%(+15) | RSI=56.8(+20) | MA金叉(+10) | 尾盘拉升(+15) | OBV上升(+10) | ADX=46.9(+10)"
+    },
+    {
+      "date": "2026-04-14",
+      "action": "BUY",
+      "stock_code": "600276.SH",
+      "shares": 200,
+      "price": 55.75,
+      "amount": 11150.0,
+      "pnl": 0.0,
+      "reason": "综合分45.0 | 涨幅+0.92%(+20) | RSI=48.7(+20) | BOLL=51.2%(+10) | MA金叉(+10) | 尾盘拉升(+15)"
+    },
+    {
+      "date": "2026-04-15",
+      "action": "SELL",
+      "stock_code": "002422.SZ",
+      "shares": 600,
+      "price": 35.19,
+      "amount": 21114.0,
+      "pnl": 276.0000000000005,
+      "reason": "14:00平仓"
+    },
+    {
+      "date": "2026-04-15",
+      "action": "SELL",
+      "stock_code": "002265.SZ",
+      "shares": 900,
+      "price": 22.41,
+      "amount": 20169.0,
+      "pnl": -414.0000000000008,
+      "reason": "止损-2.0%(bar[98])"
+    },
+    {
+      "date": "2026-04-15",
+      "action": "SELL",
+      "stock_code": "601012.SH",
+      "shares": 1200,
+      "price": 17.5,
+      "amount": 21000.0,
+      "pnl": -276.0000000000005,
+      "reason": "14:00平仓"
+    },
+    {
+      "date": "2026-04-15",
+      "action": "BUY",
+      "stock_code": "002422.SZ",
+      "shares": 600,
+      "price": 35.35,
+      "amount": 21210.0,
+      "pnl": 0.0,
+      "reason": "综合分48.0 | 涨幅+3.38%(+10) | RSI=58.9(+20) | MA金叉(+10) | 尾盘拉升(+15) | OBV上升(+10) | ADX=27.1(+10) | MACD多头(+5)"
+    },
+    {
+      "date": "2026-04-15",
+      "action": "BUY",
+      "stock_code": "601166.SH",
+      "shares": 1100,
+      "price": 18.72,
+      "amount": 20592.0,
+      "pnl": 0.0,
+      "reason": "综合分45.0 | 涨幅+0.86%(+20) | RSI=50.5(+20) | BOLL=53.9%(+10) | 尾盘拉升(+15) | OBV上升(+10)"
+    },
+    {
+      "date": "2026-04-16",
+      "action": "SELL",
+      "stock_code": "601668.SH",
+      "shares": 2800,
+      "price": 4.97,
+      "amount": 13916.0,
+      "pnl": 0.0,
+      "reason": "14:00平仓"
+    },
+    {
+      "date": "2026-04-16",
+      "action": "SELL",
+      "stock_code": "600584.SH",
+      "shares": 300,
+      "price": 43.23,
+      "amount": 12968.999999999998,
+      "pnl": -273.00000000000114,
+      "reason": "止损-2.1%(bar[3])"
+    },
+    {
+      "date": "2026-04-16",
+      "action": "SELL",
+      "stock_code": "600276.SH",
+      "shares": 200,
+      "price": 57.28,
+      "amount": 11456.0,
+      "pnl": 306.0000000000002,
+      "reason": "14:00平仓"
+    },
+    {
+      "date": "2026-04-16",
+      "action": "BUY",
+      "stock_code": "002422.SZ",
+      "shares": 500,
+      "price": 36.05,
+      "amount": 18025.0,
+      "pnl": 0.0,
+      "reason": "综合分54.0 | 涨幅+0.81%(+20) | RSI=61.3(+20) | MA金叉(+10) | 尾盘拉升(+15) | OBV上升(+10) | ADX=42.9(+10) | MACD多头(+5)"
+    },
+    {
+      "date": "2026-04-16",
+      "action": "BUY",
+      "stock_code": "300496.SZ",
+      "shares": 300,
+      "price": 61.45,
+      "amount": 18435.0,
+      "pnl": 0.0,
+      "reason": "综合分51.0 | 涨幅+1.47%(+20) | RSI=47.2(+20) | BOLL=66.6%(+10) | MA金叉(+10) | 尾盘拉升(+15) | OBV上升(+10)"
+    },
+    {
+      "date": "2026-04-16",
+      "action": "BUY",
+      "stock_code": "002230.SZ",
+      "shares": 400,
+      "price": 48.09,
+      "amount": 19236.0,
+      "pnl": 0.0,
+      "reason": "综合分51.0 | 涨幅+1.18%(+20) | RSI=46.3(+20) | BOLL=68.2%(+10) | MA金叉(+10) | 尾盘拉升(+15) | OBV上升(+10)"
+    },
+    {
+      "date": "2026-04-17",
+      "action": "SELL",
+      "stock_code": "002422.SZ",
+      "shares": 600,
+      "price": 34.59,
+      "amount": 20754.000000000004,
+      "pnl": -455.9999999999988,
+      "reason": "止损-2.1%(bar[96])"
+    },
+    {
+      "date": "2026-04-17",
+      "action": "SELL",
+      "stock_code": "601166.SH",
+      "shares": 1100,
+      "price": 18.42,
+      "amount": 20262.000000000004,
+      "pnl": -329.9999999999969,
+      "reason": "14:00平仓"
+    },
+    {
+      "date": "2026-04-17",
+      "action": "BUY",
+      "stock_code": "600150.SH",
+      "shares": 400,
+      "price": 32.92,
+      "amount": 13168.0,
+      "pnl": 0.0,
+      "reason": "综合分51.0 | 涨幅+0.64%(+20) | RSI=49.9(+20) | MA金叉(+10) | 尾盘拉升(+15) | OBV上升(+10) | ADX=50.0(+10)"
+    },
+    {
+      "date": "2026-04-17",
+      "action": "BUY",
+      "stock_code": "600048.SH",
+      "shares": 2600,
+      "price": 6.06,
+      "amount": 15755.999999999998,
+      "pnl": 0.0,
+      "reason": "综合分42.0 | 涨幅+1.51%(+15) | RSI=52.9(+20) | MA金叉(+10) | 尾盘拉升(+15) | ADX=26.4(+10)"
+    },
+    {
+      "date": "2026-04-17",
+      "action": "BUY",
+      "stock_code": "002185.SZ",
+      "shares": 1200,
+      "price": 12.74,
+      "amount": 15288.0,
+      "pnl": 0.0,
+      "reason": "综合分42.0 | 涨幅+1.67%(+15) | RSI=51.9(+20) | MA金叉(+10) | 尾盘拉升(+15) | OBV上升(+10)"
+    },
+    {
+      "date": "2026-04-20",
+      "action": "SELL",
+      "stock_code": "002422.SZ",
+      "shares": 500,
+      "price": 34.81,
+      "amount": 17405.0,
+      "pnl": -619.9999999999975,
+      "reason": "止损-3.4%(bar[0])"
+    },
+    {
+      "date": "2026-04-20",
+      "action": "SELL",
+      "stock_code": "300496.SZ",
+      "shares": 300,
+      "price": 61.96,
+      "amount": 18588.0,
+      "pnl": 152.9999999999994,
+      "reason": "14:00平仓"
+    },
+    {
+      "date": "2026-04-20",
+      "action": "SELL",
+      "stock_code": "002230.SZ",
+      "shares": 400,
+      "price": 48.74,
+      "amount": 19496.0,
+      "pnl": 259.99999999999943,
+      "reason": "14:00平仓"
+    },
+    {
+      "date": "2026-04-20",
+      "action": "BUY",
+      "stock_code": "601318.SH",
+      "shares": 300,
+      "price": 58.5,
+      "amount": 17550.0,
+      "pnl": 0.0,
+      "reason": "综合分57.0 | 涨幅+0.93%(+20) | RSI=46.4(+20) | BOLL=65.5%(+10) | MA金叉(+10) | 尾盘拉升(+15) | OBV上升(+10) | ADX=31.3(+10)"
+    },
+    {
+      "date": "2026-04-20",
+      "action": "BUY",
+      "stock_code": "603288.SH",
+      "shares": 400,
+      "price": 40.26,
+      "amount": 16104.0,
+      "pnl": 0.0,
+      "reason": "综合分54.0 | 涨幅+0.83%(+20) | RSI=54.7(+20) | BOLL=52.0%(+10) | MA金叉(+10) | 尾盘拉升(+15) | OBV上升(+10) | MACD多头(+5)"
+    },
+    {
+      "date": "2026-04-20",
+      "action": "BUY",
+      "stock_code": "300274.SZ",
+      "shares": 100,
+      "price": 134.65,
+      "amount": 13465.0,
+      "pnl": 0.0,
+      "reason": "综合分51.0 | 涨幅+1.33%(+20) | RSI=42.0(+20) | BOLL=39.1%(+10) | 尾盘拉升(+15) | OBV上升(+10) | ADX=28.6(+10)"
+    },
+    {
+      "date": "2026-04-21",
+      "action": "SELL",
+      "stock_code": "600150.SH",
+      "shares": 400,
+      "price": 36.1,
+      "amount": 14440.0,
+      "pnl": 1272.0,
+      "reason": "止盈+9.7%(bar[0])"
+    },
+    {
+      "date": "2026-04-21",
+      "action": "SELL",
+      "stock_code": "600048.SH",
+      "shares": 2600,
+      "price": 5.93,
+      "amount": 15418.0,
+      "pnl": -337.9999999999997,
+      "reason": "止损-2.1%(bar[48])"
+    },
+    {
+      "date": "2026-04-21",
+      "action": "SELL",
+      "stock_code": "002185.SZ",
+      "shares": 1200,
+      "price": 12.45,
+      "amount": 14940.0,
+      "pnl": -348.00000000000114,
+      "reason": "止损-2.3%(bar[8])"
+    },
+    {
+      "date": "2026-04-21",
+      "action": "BUY",
+      "stock_code": "603288.SH",
+      "shares": 400,
+      "price": 40.75,
+      "amount": 16300.0,
+      "pnl": 0.0,
+      "reason": "综合分54.0 | 涨幅+1.14%(+20) | RSI=58.1(+20) | BOLL=56.3%(+10) | MA金叉(+10) | 尾盘拉升(+15) | OBV上升(+10) | MACD多头(+5)"
+    },
+    {
+      "date": "2026-04-21",
+      "action": "BUY",
+      "stock_code": "002027.SZ",
+      "shares": 3000,
+      "price": 6.28,
+      "amount": 18840.0,
+      "pnl": 0.0,
+      "reason": "综合分45.0 | 涨幅+1.29%(+20) | RSI=41.4(+20) | 尾盘拉升(+15) | OBV上升(+10) | ADX=46.1(+10)"
+    },
+    {
+      "date": "2026-04-21",
+      "action": "BUY",
+      "stock_code": "300014.SZ",
+      "shares": 200,
+      "price": 71.88,
+      "amount": 14376.0,
+      "pnl": 0.0,
+      "reason": "综合分45.0 | 涨幅+4.26%(+10) | RSI=59.2(+20) | MA金叉(+10) | 尾盘拉升(+15) | OBV上升(+10) | ADX=47.9(+10)"
+    },
+    {
+      "date": "2026-04-22",
+      "action": "SELL",
+      "stock_code": "601318.SH",
+      "shares": 300,
+      "price": 58.02,
+      "amount": 17406.0,
+      "pnl": -143.99999999999906,
+      "reason": "14:00平仓"
+    },
+    {
+      "date": "2026-04-22",
+      "action": "SELL",
+      "stock_code": "603288.SH",
+      "shares": 400,
+      "price": 39.83,
+      "amount": 15932.0,
+      "pnl": -171.9999999999999,
+      "reason": "14:00平仓"
+    },
+    {
+      "date": "2026-04-22",
+      "action": "SELL",
+      "stock_code": "300274.SZ",
+      "shares": 100,
+      "price": 136.5,
+      "amount": 13650.0,
+      "pnl": 184.99999999999943,
+      "reason": "14:00平仓"
+    },
+    {
+      "date": "2026-04-22",
+      "action": "BUY",
+      "stock_code": "002025.SZ",
+      "shares": 200,
+      "price": 76.38,
+      "amount": 15276.0,
+      "pnl": 0.0,
+      "reason": "综合分57.0 | 涨幅+2.72%(+15) | RSI=59.3(+20) | BOLL=68.0%(+10) | MA金叉(+10) | 尾盘拉升(+15) | OBV上升(+10) | ADX=32.7(+10) | MACD多头(+5)"
+    },
+    {
+      "date": "2026-04-22",
+      "action": "BUY",
+      "stock_code": "300059.SZ",
+      "shares": 900,
+      "price": 20.17,
+      "amount": 18153.0,
+      "pnl": 0.0,
+      "reason": "综合分51.0 | 涨幅+1.05%(+20) | RSI=51.0(+20) | MA金叉(+10) | 尾盘拉升(+15) | OBV上升(+10) | ADX=50.3(+10)"
+    },
+    {
+      "date": "2026-04-22",
+      "action": "BUY",
+      "stock_code": "002152.SZ",
+      "shares": 1400,
+      "price": 12.17,
+      "amount": 17038.0,
+      "pnl": 0.0,
+      "reason": "综合分51.0 | 涨幅+0.75%(+20) | RSI=51.7(+20) | MA金叉(+10) | 尾盘拉升(+15) | OBV上升(+10) | ADX=45.9(+10)"
+    },
+    {
+      "date": "2026-04-23",
+      "action": "SELL",
+      "stock_code": "603288.SH",
+      "shares": 400,
+      "price": 39.69,
+      "amount": 15876.0,
+      "pnl": -424.0000000000009,
+      "reason": "止损-2.6%(bar[0])"
+    },
+    {
+      "date": "2026-04-23",
+      "action": "SELL",
+      "stock_code": "002027.SZ",
+      "shares": 3000,
+      "price": 6.22,
+      "amount": 18660.0,
+      "pnl": -180.00000000000148,
+      "reason": "14:00平仓"
+    },
+    {
+      "date": "2026-04-23",
+      "action": "SELL",
+      "stock_code": "300014.SZ",
+      "shares": 200,
+      "price": 72.39,
+      "amount": 14478.0,
+      "pnl": 102.00000000000102,
+      "reason": "14:00平仓"
+    },
+    {
+      "date": "2026-04-23",
+      "action": "BUY",
+      "stock_code": "601398.SH",
+      "shares": 2300,
+      "price": 7.57,
+      "amount": 17411.0,
+      "pnl": 0.0,
+      "reason": "综合分48.0 | 涨幅+0.66%(+20) | RSI=57.6(+20) | MA金叉(+10) | 尾盘拉升(+15) | OBV上升(+10) | MACD多头(+5)"
+    },
+    {
+      "date": "2026-04-23",
+      "action": "BUY",
+      "stock_code": "000858.SZ",
+      "shares": 100,
+      "price": 101.17,
+      "amount": 10117.0,
+      "pnl": 0.0,
+      "reason": "综合分48.0 | 涨幅+0.53%(+20) | RSI=42.6(+20) | 尾盘拉升(+15) | OBV上升(+10) | ADX=37.3(+10) | MACD多头(+5)"
+    },
+    {
+      "date": "2026-04-23",
+      "action": "BUY",
+      "stock_code": "000568.SZ",
+      "shares": 100,
+      "price": 101.91,
+      "amount": 10191.0,
+      "pnl": 0.0,
+      "reason": "综合分48.0 | 涨幅+1.69%(+15) | RSI=42.2(+20) | BOLL=33.1%(+10) | 尾盘拉升(+15) | OBV上升(+10) | ADX=34.1(+10)"
+    },
+    {
+      "date": "2026-04-24",
+      "action": "SELL",
+      "stock_code": "002025.SZ",
+      "shares": 200,
+      "price": 72.88,
+      "amount": 14576.0,
+      "pnl": -700.0,
+      "reason": "止损-4.6%(bar[0])"
+    },
+    {
+      "date": "2026-04-24",
+      "action": "SELL",
+      "stock_code": "300059.SZ",
+      "shares": 900,
+      "price": 19.76,
+      "amount": 17784.0,
+      "pnl": -369.0000000000001,
+      "reason": "止损-2.0%(bar[1])"
+    },
+    {
+      "date": "2026-04-24",
+      "action": "SELL",
+      "stock_code": "002152.SZ",
+      "shares": 1400,
+      "price": 11.91,
+      "amount": 16674.0,
+      "pnl": -363.9999999999997,
+      "reason": "止损-2.1%(bar[6])"
+    },
+    {
+      "date": "2026-04-24",
+      "action": "BUY",
+      "stock_code": "002185.SZ",
+      "shares": 1700,
+      "price": 12.56,
+      "amount": 21352.0,
+      "pnl": 0.0,
+      "reason": "综合分57.0 | 涨幅+0.88%(+20) | RSI=49.3(+20) | BOLL=68.8%(+10) | MA金叉(+10) | 尾盘拉升(+15) | OBV上升(+10) | ADX=46.2(+10)"
+    },
+    {
+      "date": "2026-04-24",
+      "action": "BUY",
+      "stock_code": "002230.SZ",
+      "shares": 400,
+      "price": 49.23,
+      "amount": 19692.0,
+      "pnl": 0.0,
+      "reason": "综合分51.0 | 涨幅+0.72%(+20) | RSI=52.3(+20) | MA金叉(+10) | 尾盘拉升(+15) | OBV上升(+10) | ADX=40.2(+10)"
+    },
+    {
+      "date": "2026-04-27",
+      "action": "SELL",
+      "stock_code": "601398.SH",
+      "shares": 2300,
+      "price": 7.5,
+      "amount": 17250.0,
+      "pnl": -161.00000000000065,
+      "reason": "14:00平仓"
+    },
+    {
+      "date": "2026-04-27",
+      "action": "SELL",
+      "stock_code": "000858.SZ",
+      "shares": 100,
+      "price": 100.12,
+      "amount": 10012.0,
+      "pnl": -104.99999999999972,
+      "reason": "14:00平仓"
+    },
+    {
+      "date": "2026-04-27",
+      "action": "SELL",
+      "stock_code": "000568.SZ",
+      "shares": 100,
+      "price": 100.78,
+      "amount": 10078.0,
+      "pnl": -112.99999999999955,
+      "reason": "14:00平仓"
+    },
+    {
+      "date": "2026-04-27",
+      "action": "BUY",
+      "stock_code": "600048.SH",
+      "shares": 3500,
+      "price": 5.79,
+      "amount": 20265.0,
+      "pnl": 0.0,
+      "reason": "综合分57.0 | 涨幅+0.87%(+20) | RSI=43.1(+20) | BOLL=48.3%(+10) | MA金叉(+10) | 尾盘拉升(+15) | OBV上升(+10) | ADX=33.3(+10)"
+    },
+    {
+      "date": "2026-04-27",
+      "action": "BUY",
+      "stock_code": "300059.SZ",
+      "shares": 1000,
+      "price": 19.96,
+      "amount": 19960.0,
+      "pnl": 0.0,
+      "reason": "综合分51.0 | 涨幅+1.32%(+20) | RSI=49.1(+20) | BOLL=67.5%(+10) | MA金叉(+10) | 尾盘拉升(+15) | ADX=75.2(+10)"
+    },
+    {
+      "date": "2026-04-27",
+      "action": "BUY",
+      "stock_code": "002594.SZ",
+      "shares": 100,
+      "price": 102.32,
+      "amount": 10232.0,
+      "pnl": 0.0,
+      "reason": "综合分51.0 | 涨幅+2.88%(+15) | RSI=52.0(+20) | BOLL=52.0%(+10) | 尾盘拉升(+15) | OBV上升(+10) | ADX=45.3(+10) | MACD多头(+5)"
+    },
+    {
+      "date": "2026-04-28",
+      "action": "SELL",
+      "stock_code": "002185.SZ",
+      "shares": 1700,
+      "price": 12.58,
+      "amount": 21386.0,
+      "pnl": 33.999999999999275,
+      "reason": "14:00平仓"
+    },
+    {
+      "date": "2026-04-28",
+      "action": "SELL",
+      "stock_code": "002230.SZ",
+      "shares": 400,
+      "price": 49.14,
+      "amount": 19656.0,
+      "pnl": -35.99999999999852,
+      "reason": "14:00平仓"
+    },
+    {
+      "date": "2026-04-28",
+      "action": "BUY",
+      "stock_code": "300059.SZ",
+      "shares": 800,
+      "price": 20.11,
+      "amount": 16088.0,
+      "pnl": 0.0,
+      "reason": "综合分51.0 | 涨幅+0.65%(+20) | RSI=51.0(+20) | MA金叉(+10) | 尾盘拉升(+15) | OBV上升(+10) | ADX=68.7(+10)"
+    },
+    {
+      "date": "2026-04-28",
+      "action": "BUY",
+      "stock_code": "600089.SH",
+      "shares": 600,
+      "price": 26.77,
+      "amount": 16062.0,
+      "pnl": 0.0,
+      "reason": "综合分45.0 | 涨幅+0.90%(+20) | RSI=43.8(+20) | BOLL=42.4%(+10) | MA金叉(+10) | 尾盘拉升(+15)"
+    },
+    {
+      "date": "2026-04-28",
+      "action": "BUY",
+      "stock_code": "600048.SH",
+      "shares": 2800,
+      "price": 6.01,
+      "amount": 16828.0,
+      "pnl": 0.0,
+      "reason": "综合分45.0 | 涨幅+4.15%(+10) | RSI=52.8(+20) | MA金叉(+10) | 尾盘拉升(+15) | OBV上升(+10) | ADX=41.0(+10)"
+    },
+    {
+      "date": "2026-04-29",
+      "action": "SELL",
+      "stock_code": "600048.SH",
+      "shares": 3500,
+      "price": 6.08,
+      "amount": 21280.0,
+      "pnl": 1015.0000000000001,
+      "reason": "止盈+5.0%(bar[6])"
+    },
+    {
+      "date": "2026-04-29",
+      "action": "SELL",
+      "stock_code": "300059.SZ",
+      "shares": 1000,
+      "price": 20.22,
+      "amount": 20220.0,
+      "pnl": 259.999999999998,
+      "reason": "14:00平仓"
+    },
+    {
+      "date": "2026-04-29",
+      "action": "SELL",
+      "stock_code": "002594.SZ",
+      "shares": 100,
+      "price": 105.15,
+      "amount": 10515.0,
+      "pnl": 283.00000000000125,
+      "reason": "14:00平仓"
+    },
+    {
+      "date": "2026-04-29",
+      "action": "BUY",
+      "stock_code": "300059.SZ",
+      "shares": 800,
+      "price": 20.28,
+      "amount": 16224.0,
+      "pnl": 0.0,
+      "reason": "综合分51.0 | 涨幅+0.60%(+20) | RSI=53.2(+20) | MA金叉(+10) | 尾盘拉升(+15) | OBV上升(+10) | ADX=68.7(+10)"
+    },
+    {
+      "date": "2026-04-29",
+      "action": "BUY",
+      "stock_code": "300496.SZ",
+      "shares": 200,
+      "price": 63.93,
+      "amount": 12786.0,
+      "pnl": 0.0,
+      "reason": "综合分51.0 | 涨幅+0.63%(+20) | RSI=53.3(+20) | MA金叉(+10) | 尾盘拉升(+15) | OBV上升(+10) | ADX=44.6(+10)"
+    },
+    {
+      "date": "2026-04-29",
+      "action": "BUY",
+      "stock_code": "688787.SH",
+      "shares": 100,
+      "price": 128.75,
+      "amount": 12875.0,
+      "pnl": 0.0,
+      "reason": "综合分51.0 | 涨幅+1.09%(+20) | RSI=43.8(+20) | BOLL=38.8%(+10) | MA金叉(+10) | 尾盘拉升(+15) | ADX=31.7(+10)"
+    },
+    {
+      "date": "2026-04-30",
+      "action": "SELL",
+      "stock_code": "300059.SZ",
+      "shares": 800,
+      "price": 20.36,
+      "amount": 16288.0,
+      "pnl": 200.0,
+      "reason": "14:00平仓"
+    },
+    {
+      "date": "2026-04-30",
+      "action": "SELL",
+      "stock_code": "600089.SH",
+      "shares": 600,
+      "price": 26.81,
+      "amount": 16086.0,
+      "pnl": 23.99999999999949,
+      "reason": "14:00平仓"
+    },
+    {
+      "date": "2026-04-30",
+      "action": "SELL",
+      "stock_code": "600048.SH",
+      "shares": 2800,
+      "price": 6.17,
+      "amount": 17276.0,
+      "pnl": 448.0000000000004,
+      "reason": "14:00平仓"
+    },
+    {
+      "date": "2026-04-30",
+      "action": "BUY",
+      "stock_code": "300059.SZ",
+      "shares": 1000,
+      "price": 20.41,
+      "amount": 20410.0,
+      "pnl": 0.0,
+      "reason": "综合分51.0 | 涨幅+0.59%(+20) | RSI=54.6(+20) | MA金叉(+10) | 尾盘拉升(+15) | OBV上升(+10) | ADX=58.7(+10)"
+    },
+    {
+      "date": "2026-04-30",
+      "action": "BUY",
+      "stock_code": "603019.SH",
+      "shares": 200,
+      "price": 93.05,
+      "amount": 18610.0,
+      "pnl": 0.0,
+      "reason": "综合分51.0 | 涨幅+2.85%(+15) | RSI=60.7(+20) | MA金叉(+10) | 尾盘拉升(+15) | OBV上升(+10) | ADX=51.3(+10) | MACD多头(+5)"
+    },
+    {
+      "date": "2026-04-30",
+      "action": "BUY",
+      "stock_code": "600584.SH",
+      "shares": 400,
+      "price": 45.58,
+      "amount": 18232.0,
+      "pnl": 0.0,
+      "reason": "综合分48.0 | 涨幅+2.73%(+15) | RSI=57.3(+20) | MA金叉(+10) | 尾盘拉升(+15) | OBV上升(+10) | ADX=31.2(+10)"
+    },
+    {
+      "date": "2026-04-30",
+      "action": "SELL",
+      "stock_code": "300059.SZ",
+      "shares": 800,
+      "price": 20.28,
+      "amount": 16224.0,
+      "pnl": 0.0,
+      "reason": "回测结束清仓"
+    },
+    {
+      "date": "2026-04-30",
+      "action": "SELL",
+      "stock_code": "300496.SZ",
+      "shares": 200,
+      "price": 63.93,
+      "amount": 12786.0,
+      "pnl": 0.0,
+      "reason": "回测结束清仓"
+    },
+    {
+      "date": "2026-04-30",
+      "action": "SELL",
+      "stock_code": "688787.SH",
+      "shares": 100,
+      "price": 128.75,
+      "amount": 12875.0,
+      "pnl": 0.0,
+      "reason": "回测结束清仓"
+    },
+    {
+      "date": "2026-04-30",
+      "action": "SELL",
+      "stock_code": "300059.SZ",
+      "shares": 1000,
+      "price": 20.41,
+      "amount": 20410.0,
+      "pnl": 0.0,
+      "reason": "回测结束清仓"
+    },
+    {
+      "date": "2026-04-30",
+      "action": "SELL",
+      "stock_code": "603019.SH",
+      "shares": 200,
+      "price": 93.05,
+      "amount": 18610.0,
+      "pnl": 0.0,
+      "reason": "回测结束清仓"
+    },
+    {
+      "date": "2026-04-30",
+      "action": "SELL",
+      "stock_code": "600584.SH",
+      "shares": 400,
+      "price": 45.58,
+      "amount": 18232.0,
+      "pnl": 0.0,
+      "reason": "回测结束清仓"
+    }
+  ],
+  "daily_snapshots": [
+    {
+      "date": "2026-04-01",
+      "cash": 37226.0,
+      "positions": 2,
+      "total_value": 100000.0
+    },
+    {
+      "date": "2026-04-02",
+      "cash": 3245.0,
+      "positions": 5,
+      "total_value": 100000.0
+    },
+    {
+      "date": "2026-04-03",
+      "cash": 47209.0,
+      "positions": 4,
+      "total_value": 99592.0
+    },
+    {
+      "date": "2026-04-07",
+      "cash": 34496.0,
+      "positions": 3,
+      "total_value": 99173.0
+    },
+    {
+      "date": "2026-04-08",
+      "cash": 11404.0,
+      "positions": 5,
+      "total_value": 101981.0
+    },
+    {
+      "date": "2026-04-09",
+      "cash": 855.9999999999964,
+      "positions": 6,
+      "total_value": 103196.0
+    },
+    {
+      "date": "2026-04-10",
+      "cash": 7002.0,
+      "positions": 6,
+      "total_value": 103034.0
+    },
+    {
+      "date": "2026-04-13",
+      "cash": 4722.0,
+      "positions": 6,
+      "total_value": 105413.0
+    },
+    {
+      "date": "2026-04-14",
+      "cash": 4159.0,
+      "positions": 6,
+      "total_value": 105164.0
+    },
+    {
+      "date": "2026-04-15",
+      "cash": 24640.0,
+      "positions": 5,
+      "total_value": 104750.0
+    },
+    {
+      "date": "2026-04-16",
+      "cash": 7285.0,
+      "positions": 5,
+      "total_value": 104783.0
+    },
+    {
+      "date": "2026-04-17",
+      "cash": 4089.0000000000073,
+      "positions": 6,
+      "total_value": 103997.0
+    },
+    {
+      "date": "2026-04-20",
+      "cash": 12459.000000000007,
+      "positions": 6,
+      "total_value": 103790.0
+    },
+    {
+      "date": "2026-04-21",
+      "cash": 7741.000000000007,
+      "positions": 6,
+      "total_value": 104376.0
+    },
+    {
+      "date": "2026-04-22",
+      "cash": 4262.000000000007,
+      "positions": 6,
+      "total_value": 104245.0
+    },
+    {
+      "date": "2026-04-23",
+      "cash": 15557.000000000007,
+      "positions": 6,
+      "total_value": 103743.0
+    },
+    {
+      "date": "2026-04-24",
+      "cash": 23547.000000000007,
+      "positions": 5,
+      "total_value": 102310.0
+    },
+    {
+      "date": "2026-04-27",
+      "cash": 10430.000000000007,
+      "positions": 5,
+      "total_value": 101931.0
+    },
+    {
+      "date": "2026-04-28",
+      "cash": 2494.0000000000073,
+      "positions": 6,
+      "total_value": 101929.0
+    },
+    {
+      "date": "2026-04-29",
+      "cash": 12624.000000000007,
+      "positions": 6,
+      "total_value": 103487.0
+    },
+    {
+      "date": "2026-04-30",
+      "cash": 5022.000000000007,
+      "positions": 6,
+      "total_value": 104159.0
+    }
+  ]
+}
